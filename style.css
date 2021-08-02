@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 section.about {
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -76,5 +76,9 @@ footer {
 
     .title {
         font-size: 2em;
+    }
+
+    section.about {
+        width: 80%;
     }
 }
