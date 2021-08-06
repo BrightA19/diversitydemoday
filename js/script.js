@@ -60,3 +60,6 @@ setInterval(() => {
     countdown -= 1000;
     countdownElem.innerText = getCountdown(countdown);
 }, 1000);
+
+// Fix countdown if user navigates elsewhere
+window.onfocus = () => countdown = eventStartDate - new Date();
