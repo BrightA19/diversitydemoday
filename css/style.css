@@ -53,10 +53,8 @@ main {
 
 .title {
     margin: 40px 0 0;
+    color: var(--primary-text-color);
     font: 48px 'Satisfy';
-}
-.title a {
-    color: var(--primary-text-color) !important;
 }
 
 .countdown_container {
