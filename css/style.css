@@ -36,7 +36,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .banner {
-    margin-top: 20px;
     width: auto;
     height: 550px;
     text-align: center;
@@ -49,26 +48,38 @@ body::-webkit-scrollbar-thumb {
 main {
     margin-bottom: 40px;
     padding: 0 20px;
+    text-align: center;
 }
 
 .title {
     margin: 40px 0 0;
-    text-align: center;
     font: 48px 'Satisfy';
 }
 .title a {
     color: var(--primary-text-color) !important;
 }
 
-p {
-    text-align: center;
+.countdown_container {
+    margin-bottom: 20px;
 }
-
 #countdown {
     text-align: center;
     font: 50px Verdana, sans-serif;
     font-weight: bold;
     margin: 0;
+}
+
+.social_media_container {
+    font-size: 40px;
+    letter-spacing: 10px;
+    transition: color 0.2s;
+}
+.social_media_container a {
+    color: var(--secondary-text-color);
+}
+.social_media_container a:hover {
+    color: #FFFFFF;
+    text-shadow: 5px 5px var(--secondary-bg-color);
 }
 
 footer {
