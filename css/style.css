@@ -35,6 +35,15 @@ body::-webkit-scrollbar-thumb {
     border-radius: 12px;
 }
 
+#cvs_effects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
 .banner {
     width: auto;
     height: 550px;
