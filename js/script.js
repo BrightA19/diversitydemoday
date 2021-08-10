@@ -77,7 +77,6 @@ function resizeCanvas() {
 window.onresize = resizeCanvas
 resizeCanvas();
 
-const FRAMES_PER_SECOND = 20;
 const ADD_CIRCLE_DELAY = 500;
 
 let timeSinceNewCircle = Date.now();
@@ -85,16 +84,18 @@ let circles = [];
 
 class Circle {
     constructor() {
-        this.size = 2 + Math.random() * 18;
-    
-        this.x = Math.random() * cvs.width;
+        let randomNumber = Math.random();
+        this.size = Circle.MIN_SIZE + Math.floor(randomNumber * (Circle.MAX_SIZE - Circle.MIN_SIZE));
+        this.speed = Circle.MAX_SPEED - Math.floor(randomNumber * (Circle.MAX_SPEED - Circle.MIN_SPEED));
+
+        randomNumber = Math.random();    
+        this.x = Math.floor(randomNumber * cvs.width);
         this.y = cvs.height + this.size;
-        this.speed = 10 - (this.size/20) * 8;
         this.delete = false;
     }
 
-    update() {
-        this.y -= this.speed;
+    update(delta) {
+        this.y -= this.speed * delta;
         
         if (this.y < -this.size) {
             this.delete = true;
@@ -110,9 +111,17 @@ class Circle {
         ctx.fill();
     }
 }
+Circle.MIN_SIZE = 2;
+Circle.MAX_SIZE = 20;
+Circle.MIN_SPEED = 50;
+Circle.MAX_SPEED = 300;
 
-setInterval(() => {
+let prev = Date.now();
+function render() {
+    requestAnimationFrame(render);
     let now = Date.now();
+    let delta = (now - prev) / 1000;
+
     if (now - timeSinceNewCircle > ADD_CIRCLE_DELAY && circles.length < 40) {
         circles.push(new Circle());
         timeSinceNewCircle = now;
@@ -123,7 +132,7 @@ setInterval(() => {
 
     for (let i = circles.length - 1; i >= 0; i--) {
         let circle = circles[i];
-        circle.update();
+        circle.update(delta);
 
         if (circle.delete) {
             circles.splice(i, 1);
@@ -133,4 +142,7 @@ setInterval(() => {
         }
     }
 
-}, 1000 / FRAMES_PER_SECOND);
+    prev = now
+}
+
+render();
